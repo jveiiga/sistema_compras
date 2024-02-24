@@ -1,5 +1,6 @@
 package com.example.compras.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -39,9 +40,9 @@ public class UsuarioModel implements Serializable {
     @Column(unique = true)
     private String telefone;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "usuarios")
-    private List<ProdutoModel> produtos;
+    @OneToMany(mappedBy = "usuario")
+    @JsonBackReference
+    private List<VendaModel> vendas;
 
     public UUID getIdUsuario() {
         return idUsuario;
@@ -83,11 +84,11 @@ public class UsuarioModel implements Serializable {
         this.telefone = telefone;
     }
 
-    public List<ProdutoModel> getProdutos() {
-        return produtos;
+    public List<VendaModel> getVendas() {
+        return vendas;
     }
 
-    public void setProdutos(List<ProdutoModel> produtos) {
-        this.produtos = produtos;
+    public void setVendas(List<VendaModel> vendas) {
+        this.vendas = vendas;
     }
 }

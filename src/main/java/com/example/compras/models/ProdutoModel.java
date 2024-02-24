@@ -22,14 +22,6 @@ public class ProdutoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idProduto;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name = "idUsuario")
-    private UsuarioModel usuario;
-
-    @Transient
-    private UUID idUsuario;
-
     @Size(max = 30)
     @NotNull
     private String categoria;
@@ -50,31 +42,12 @@ public class ProdutoModel implements Serializable {
     @Size(max = 8)
     private String cep;
 
-    @OneToMany(mappedBy = "produtos", fetch = FetchType.LAZY)
-    private List<ItemVendaModel> itensVenda;
-
     public UUID getIdProduto() {
         return idProduto;
     }
 
     public void setIdProduto(UUID idProduto) {
         this.idProduto = idProduto;
-    }
-
-    public UsuarioModel getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioModel usuario) {
-        this.usuario = usuario;
-    }
-
-    public UUID getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(UUID idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getCategoria() {
@@ -123,13 +96,5 @@ public class ProdutoModel implements Serializable {
 
     public void setCep(String cep) {
         this.cep = cep;
-    }
-
-    public List<ItemVendaModel> getItensVenda() {
-        return itensVenda;
-    }
-
-    public void setItensVenda(List<ItemVendaModel> itensVenda) {
-        this.itensVenda = itensVenda;
     }
 }

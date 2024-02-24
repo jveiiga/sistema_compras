@@ -23,20 +23,25 @@ public class VendaModel implements Serializable {
     @JoinColumn(name = "idUsuario")
     private UsuarioModel usuario;
 
+    @Column(name = "idUsuario", insertable = false, updatable = false)
+    private UUID idUsuario;
+
     @NotNull
     private String tipoPagamento;
 
     @NotNull
     private String frete;
 
-    @OneToMany(mappedBy = "venda")
-    private List<ItemVendaModel> itensVenda;
-
-    @ElementCollection
-    private List<UUID> idProdutos;
-
     public UUID getIdVenda() {
         return idVenda;
+    }
+
+    public UUID getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(UUID idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public void setIdVenda(UUID idVenda) {
@@ -65,21 +70,5 @@ public class VendaModel implements Serializable {
 
     public void setFrete(String frete) {
         this.frete = frete;
-    }
-
-    public List<ItemVendaModel> getItensVenda() {
-        return itensVenda;
-    }
-
-    public void setItensVenda(List<ItemVendaModel> itensVenda) {
-        this.itensVenda = itensVenda;
-    }
-
-    public List<UUID> getIdProdutos() {
-        return idProdutos;
-    }
-
-    public void setIdProdutos(List<UUID> idProdutos) {
-        this.idProdutos = idProdutos;
     }
 }
