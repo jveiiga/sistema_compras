@@ -5,6 +5,7 @@ import com.example.compras.models.ProdutoModel;
 import com.example.compras.models.UsuarioModel;
 import com.example.compras.repositories.ProdutoRepository;
 import com.example.compras.repositories.UsuarioRepository;
+import com.example.compras.services.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,12 @@ import java.util.Optional;
 
 @RestController
 public class ProdutoController {
-
     @Autowired
-    private ProdutoRepository produtoRepository;
+    private ProdutoService produtoService;
 
     @PostMapping("/produtos")
     public ResponseEntity<ProdutoModel> salvandoProduto(@RequestBody @Valid ProdutoRecordDto produtoRecordDto) {
-        ProdutoModel produtoModel = new ProdutoModel();
-        BeanUtils.copyProperties(produtoRecordDto, produtoModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produtoModel));
+        ProdutoModel novoProduto = produtoService.salvandoProduto(produtoRecordDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoProduto);
     }
 }
