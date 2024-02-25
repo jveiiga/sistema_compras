@@ -13,6 +13,6 @@ public record VendaRecordDto(
         @NotNull List<UUID> idProdutos,
         @NotNull List<BigDecimal> quantidadesProdutos,
         @NotBlank String tipoPagamento,
-        String frete
+        @NotBlank String frete
 ) {
 }

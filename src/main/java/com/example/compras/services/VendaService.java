@@ -9,6 +9,7 @@ import com.example.compras.repositories.ItemVendaRepository;
 import com.example.compras.repositories.ProdutoRepository;
 import com.example.compras.repositories.UsuarioRepository;
 import com.example.compras.repositories.VendaRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -31,7 +32,7 @@ public class VendaService {
         this.itemVendaRepository = itemVendaRepository;
     }
 
-    public VendaModel realizarCompra(VendaRecordDto vendaRecordDto) {
+    public VendaModel realizarCompra(@Valid VendaRecordDto vendaRecordDto) {
 
         //Obtem usuario no db
         UsuarioModel usuario = usuarioRepository.findById(vendaRecordDto.idUsuario()).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
