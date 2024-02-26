@@ -18,8 +18,8 @@ public class ItemVendaModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idItemVenda;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuario")
+    @ManyToOne
+//    @JoinColumn(name = "idUsuario")
     @JsonManagedReference
     private UsuarioModel usuario;
 
@@ -35,7 +35,7 @@ public class ItemVendaModel implements Serializable {
         return idItemVenda;
     }
 
-    @Column(name = "idUsuario", insertable = false, updatable = false)
+    @Column(name = "idUsuario")
     private UUID idUsuario;
 
     public UUID getIdUsuario() {

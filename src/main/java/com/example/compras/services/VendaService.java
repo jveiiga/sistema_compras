@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -79,5 +80,9 @@ public class VendaService {
         }
 
         return venda;
+    }
+
+    public List<VendaModel> listandoVendasUsuario(UUID id) {
+        return vendaRepository.findAllByUsuarioIdUsuario(id);
     }
 }

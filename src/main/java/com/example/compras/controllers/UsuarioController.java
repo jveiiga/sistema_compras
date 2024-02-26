@@ -2,6 +2,7 @@ package com.example.compras.controllers;
 
 import com.example.compras.dtos.UsuarioRecordDto;
 import com.example.compras.models.UsuarioModel;
+import com.example.compras.models.VendaModel;
 import com.example.compras.repositories.UsuarioRepository;
 import com.example.compras.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -42,4 +43,5 @@ public class UsuarioController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(usuarioO.get());
     }
+
 }
